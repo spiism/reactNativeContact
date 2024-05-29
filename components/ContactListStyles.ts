@@ -7,8 +7,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#f8f8f8',
   },
   outerBorderContainer: {
-    width: 60,
-    height: 60,
+    width: 57,
+    height: 57,
     borderRadius: 30,
     borderWidth: 2,
     borderColor: '#ccc',
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   statusIndicator: {
     position: 'absolute',
     bottom: 2,
-    right: 2,
+    right: 0,
     width: 12,
     height: 12,
     borderRadius: 6,
