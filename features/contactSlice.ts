@@ -38,7 +38,12 @@ export const fetchContacts = createAsyncThunk<Contact[], string>(
 const contactSlice = createSlice({
   name: 'contacts',
   initialState,
-  reducers: {},
+  //DELETE CONTACT
+  reducers: {
+    deleteContact: (state, action: PayloadAction<number>) => {
+      state.data = state.data.filter(contact => contact.id !== action.payload);
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchContacts.pending, state => {
@@ -59,4 +64,5 @@ const contactSlice = createSlice({
   },
 });
 
+export const {deleteContact} = contactSlice.actions;
 export default contactSlice.reducer;
