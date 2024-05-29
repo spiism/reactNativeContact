@@ -6,25 +6,38 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f8f8f8',
   },
-  status: {
-    flexDirection: 'row',
+  outerBorderContainer: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    borderWidth: 2,
+    borderColor: '#ccc',
     alignItems: 'center',
-  },
-  statusIndicator: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
+    justifyContent: 'center',
+    position: 'relative',
   },
   avatarContainer: {
     width: 50,
     height: 50,
     borderRadius: 25,
     overflow: 'hidden',
+    position: 'relative',
   },
   avatar: {
     width: '100%',
     height: '100%',
     borderRadius: 25,
+  },
+  statusIndicator: {
+    position: 'absolute',
+    bottom: 2,
+    right: 2,
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    borderWidth: 2,
+    borderColor: '#fff',
+    zIndex: 1,
   },
 });
 

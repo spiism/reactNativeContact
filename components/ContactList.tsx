@@ -1,7 +1,7 @@
 // ContactList.tsx
 import React from 'react';
 import {View, ScrollView} from 'react-native';
-import {ListItem, Avatar} from 'react-native-elements';
+import {ListItem, Avatar, Badge} from 'react-native-elements';
 import styles from './ContactListStyles';
 
 interface Contact {
@@ -55,29 +55,30 @@ const ContactList: React.FC = () => {
     <ScrollView style={styles.container}>
       {contacts.map((contact, index) => (
         <ListItem key={index} bottomDivider>
-          <View style={styles.avatarContainer}>
-            <Avatar source={{uri: contact.avatar_url}} style={styles.avatar} />
+          <View style={styles.outerBorderContainer}>
+            <View style={styles.avatarContainer}>
+              <Avatar
+                source={{uri: contact.avatar_url}}
+                size="medium"
+                rounded
+                containerStyle={styles.avatar}
+              />
+            </View>
+            <Badge
+              status={
+                contact.status === 'online'
+                  ? 'success'
+                  : contact.status === 'busy'
+                  ? 'warning'
+                  : 'error'
+              }
+              containerStyle={styles.statusIndicator}
+            />
           </View>
-
           <ListItem.Content>
             <ListItem.Title>{contact.name}</ListItem.Title>
             <ListItem.Subtitle>{contact.subtitle}</ListItem.Subtitle>
           </ListItem.Content>
-          <View style={styles.status}>
-            <View
-              style={[
-                styles.statusIndicator,
-                {
-                  backgroundColor:
-                    contact.status === 'online'
-                      ? 'green'
-                      : contact.status === 'busy'
-                      ? 'yellow'
-                      : 'red',
-                },
-              ]}
-            />
-          </View>
         </ListItem>
       ))}
     </ScrollView>
