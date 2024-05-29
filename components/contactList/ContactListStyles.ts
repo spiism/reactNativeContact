@@ -39,6 +39,33 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
     zIndex: 1,
   },
+  rowBack: {
+    alignItems: 'center',
+    backgroundColor: '#DDD',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingLeft: 15,
+  },
+  backRightBtn: {
+    alignItems: 'center',
+    bottom: 0,
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 0,
+    width: 75,
+  },
+  backRightBtnLeft: {
+    backgroundColor: 'blue',
+    right: 75,
+  },
+  backRightBtnRight: {
+    backgroundColor: 'red',
+    right: 0,
+  },
+  backTextWhite: {
+    color: '#FFF',
+  },
 });
 
 export default styles;
