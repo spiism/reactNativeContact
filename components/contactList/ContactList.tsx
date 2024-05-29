@@ -7,7 +7,7 @@ import {Contact} from '../../models/contact';
 import {AppDispatch} from '../../store/store';
 import {useDispatch} from 'react-redux';
 import {deleteContact, editContact} from '../../features/contactSlice';
-import EditContactModal from '../modal/EditContactModal';
+import EditAddContactModal from '../modal/EditAddContactModal';
 
 interface Props {
   data: Contact[];
@@ -95,7 +95,7 @@ const ContactList = ({data}: Props) => {
             </TouchableOpacity>
             <TouchableOpacity
               style={[styles.backRightBtn, styles.backRightBtnRight]}
-              onPress={() => handleDelete(item.id)}>
+              onPress={() => handleDelete(item.id as number)}>
               <Text style={styles.backTextWhite}>Delete</Text>
             </TouchableOpacity>
           </View>
@@ -104,7 +104,7 @@ const ContactList = ({data}: Props) => {
         rightOpenValue={-150}
       />
       {currentContact && (
-        <EditContactModal
+        <EditAddContactModal
           visible={modalVisible}
           contact={currentContact}
           onClose={() => setModalVisible(false)}

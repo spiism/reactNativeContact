@@ -3,14 +3,14 @@ import {Modal, View, Text, TextInput, Button} from 'react-native';
 import styles from './EditContactModalStyles';
 import {Contact} from '../../models/contact';
 
-interface EditContactModalProps {
+interface EditAddContactModalProps {
   visible: boolean;
-  contact: Contact | null;
+  contact?: Contact | null;
   onClose: () => void;
   onSave: (contact: Contact) => void;
 }
 
-const EditContactModal: React.FC<EditContactModalProps> = ({
+const EditAddContactModal: React.FC<EditAddContactModalProps> = ({
   visible,
   contact,
   onClose,
@@ -25,18 +25,21 @@ const EditContactModal: React.FC<EditContactModalProps> = ({
       setFirstName(contact.first_name);
       setLastName(contact.last_name);
       setEmail(contact.email);
+    } else {
+      setFirstName('');
+      setLastName('');
+      setEmail('');
     }
   }, [contact]);
 
   const handleSave = () => {
-    if (contact) {
-      onSave({
-        ...contact,
-        first_name: firstName,
-        last_name: lastName,
-        email: email,
-      });
-    }
+    const newContact: Contact = {
+      id: contact ? contact.id : Date.now().toString(),
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+    };
+    onSave(newContact);
   };
 
   return (
@@ -47,7 +50,9 @@ const EditContactModal: React.FC<EditContactModalProps> = ({
       onRequestClose={onClose}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Text style={styles.modalText}>Edit Contact</Text>
+          <Text style={styles.modalText}>
+            {contact ? 'Edit Contact' : 'Add Contact'}
+          </Text>
           <TextInput
             style={styles.input}
             onChangeText={setFirstName}
@@ -75,4 +80,4 @@ const EditContactModal: React.FC<EditContactModalProps> = ({
   );
 };
 
-export default EditContactModal;
+export default EditAddContactModal;
