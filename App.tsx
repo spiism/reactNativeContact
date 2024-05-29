@@ -49,21 +49,9 @@ function AppContent(): React.JSX.Element {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View
-        style={{
-          height: 60,
-          backgroundColor: '#ffffff',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexDirection: 'row',
-          paddingHorizontal: 16,
-          shadowColor: '#000',
-          shadowOffset: {width: 0, height: 2},
-          shadowOpacity: 0.2,
-          elevation: 2,
-        }}>
+      <View style={styles.header}>
         <Text>Menu</Text>
-        <Text>Contact</Text>
+        <Text style={styles.contactText}>Contact</Text>
         <TouchableOpacity onPress={handleSearch}>
           <Icon name="search1" size={24} color="#000" />
         </TouchableOpacity>

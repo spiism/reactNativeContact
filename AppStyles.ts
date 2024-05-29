@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
     margin: 16,
     borderRadius: 4,
   },
+  contactText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
 });
 
 export default styles;
