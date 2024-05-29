@@ -34,4 +34,8 @@ export default StyleSheet.create({
     paddingLeft: 8,
     width: '80%',
   },
+  errorText: {
+    color: 'red',
+    marginBottom: 10,
+  },
 });

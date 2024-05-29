@@ -20,6 +20,8 @@ const EditAddContactModal: React.FC<EditAddContactModalProps> = ({
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [avatar, setAvatar] = useState('');
+  const [firstNameError, setFirstNameError] = useState('');
+  const [lastNameError, setLastNameError] = useState('');
 
   useEffect(() => {
     if (contact) {
@@ -36,6 +38,24 @@ const EditAddContactModal: React.FC<EditAddContactModalProps> = ({
   }, [contact, visible]);
 
   const handleSave = () => {
+    let isValid = true;
+    if (!firstName.trim()) {
+      setFirstNameError('First name is required');
+      isValid = false;
+    } else {
+      setFirstNameError('');
+    }
+
+    if (!lastName.trim()) {
+      setLastNameError('Last name is required');
+      isValid = false;
+    } else {
+      setLastNameError('');
+    }
+
+    if (!isValid) {
+      return;
+    }
     const newContact: Contact = {
       id: contact ? contact.id : Date.now().toString(),
       first_name: firstName,
@@ -45,8 +65,6 @@ const EditAddContactModal: React.FC<EditAddContactModalProps> = ({
     };
     onSave(newContact);
   };
-
-  console.log(contact, 'contact');
 
   return (
     <Modal
@@ -65,12 +83,19 @@ const EditAddContactModal: React.FC<EditAddContactModalProps> = ({
             value={firstName}
             placeholder="First Name"
           />
+          {firstNameError ? (
+            <Text style={styles.errorText}>{firstNameError}</Text>
+          ) : null}
           <TextInput
             style={styles.input}
             onChangeText={setLastName}
             value={lastName}
             placeholder="Last Name"
           />
+          {lastNameError ? (
+            <Text style={styles.errorText}>{lastNameError}</Text>
+          ) : null}
+
           <TextInput
             style={styles.input}
             onChangeText={setEmail}
