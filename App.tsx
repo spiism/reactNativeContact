@@ -1,10 +1,15 @@
 import React from 'react';
-
-import ContactList from './components/ContactList';
-import {Text} from 'react-native';
+import {Text, SafeAreaView} from 'react-native';
+import ContactList from './components/contactList/ContactList';
+import Header from './components/header/Header';
 
 function App(): React.JSX.Element {
-  return <ContactList />;
+  return (
+    <SafeAreaView style={{flex: 1}}>
+      <Header />
+      <ContactList />
+    </SafeAreaView>
+  );
   // return <Text>sdgdfg</Text>;
 }
 
