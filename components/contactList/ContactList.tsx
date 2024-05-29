@@ -1,17 +1,41 @@
 import React from 'react';
-import {View, TouchableOpacity, Text} from 'react-native';
+import {View, TouchableOpacity, Text, Alert} from 'react-native';
 import {ListItem, Avatar, Badge} from 'react-native-elements';
 import {SwipeListView} from 'react-native-swipe-list-view';
 import styles from './ContactListStyles';
 import {Contact} from '../../models/contact';
+import {AppDispatch} from '../../store/store';
+import {useDispatch} from 'react-redux';
+import {deleteContact} from '../../features/contactSlice';
 
 interface Props {
   data: Contact[];
 }
 
 const ContactList = ({data}: Props) => {
-  const handleDelete = (data: string) => {
-    console.log('Delete contact:', data);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleDelete = (id: number) => {
+    // Optionally show a confirmation dialog before deleting
+    Alert.alert(
+      'Delete Contact',
+      'Are you sure you want to delete this contact?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Delete',
+          style: 'destructive',
+          onPress: async () => {
+            dispatch(deleteContact(id));
+
+            // dispatch(fetchContacts('https://reqres.in/api/users?page=2'));
+          },
+        },
+      ],
+    );
   };
 
   const handleEdit = (data: string) => {
@@ -62,7 +86,7 @@ const ContactList = ({data}: Props) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.backRightBtn, styles.backRightBtnRight]}
-            onPress={() => handleDelete(item.first_name)}>
+            onPress={() => handleDelete(item.id)}>
             <Text style={styles.backTextWhite}>Delete</Text>
           </TouchableOpacity>
         </View>
