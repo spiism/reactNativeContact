@@ -54,17 +54,27 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     width: 75,
+    height: '100%',
+    borderRadius: 5,
+    margin: 0,
+    elevation: 3, // For Android
+    shadowColor: '#000', // For iOS
+    shadowOffset: {width: 0, height: 2}, // For iOS
+    shadowOpacity: 0.8, // For iOS
+    shadowRadius: 2, // For iOS
   },
   backRightBtnLeft: {
-    backgroundColor: 'blue',
+    backgroundColor: '#3498db',
     right: 75,
   },
   backRightBtnRight: {
-    backgroundColor: 'red',
+    backgroundColor: '#e74c3c',
     right: 0,
   },
   backTextWhite: {
     color: '#FFF',
+    padding: 10,
+    fontWeight: 'bold',
   },
 });
 
