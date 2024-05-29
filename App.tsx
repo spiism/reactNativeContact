@@ -50,7 +50,7 @@ function AppContent(): React.JSX.Element {
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.header}>
-        <Text>Menu</Text>
+        <Icon name="menufold" size={24} color="#000" />
         <Text style={styles.contactText}>Contact</Text>
         <TouchableOpacity onPress={handleSearch}>
           <Icon name="search1" size={24} color="#000" />
