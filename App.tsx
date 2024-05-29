@@ -9,9 +9,11 @@ import {
 import ContactList from './components/contactList/ContactList';
 import {Provider, useDispatch, useSelector} from 'react-redux';
 import store, {AppDispatch, RootState} from './store/store';
-import {fetchContacts} from './features/contactSlice';
+import {addContact, fetchContacts} from './features/contactSlice';
 import Icon from 'react-native-vector-icons/AntDesign';
 import styles from './AppStyles';
+import {Contact} from './models/contact';
+import EditAddContactModal from './components/modal/EditAddContactModal';
 // import useFetch from './hook/useFetch';
 
 function AppContent(): React.JSX.Element {
@@ -28,6 +30,9 @@ function AppContent(): React.JSX.Element {
 
   const [searchVisible, setSearchVisible] = useState(false);
   const [searchText, setSearchText] = useState('');
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
 
   useEffect(() => {
     dispatch(fetchContacts('https://reqres.in/api/users?page=2'));
@@ -46,6 +51,16 @@ function AppContent(): React.JSX.Element {
       contact.first_name.toLowerCase().includes(searchText.toLowerCase()) ||
       contact.last_name.toLowerCase().includes(searchText.toLowerCase()),
   );
+
+  const handleAddContact = () => {
+    setSelectedContact(null);
+    setModalVisible(true);
+  };
+
+  const handleSaveContact = (contact: Contact) => {
+    dispatch(addContact(contact));
+    setModalVisible(false);
+  };
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -70,6 +85,19 @@ function AppContent(): React.JSX.Element {
       <View style={{flex: 1}}>
         {!loading && <ContactList data={filteredData} />}
       </View>
+
+      <TouchableOpacity
+        style={styles.floatingButton}
+        onPress={handleAddContact}>
+        <Icon name="plus" style={styles.floatingButtonIcon} />
+      </TouchableOpacity>
+
+      <EditAddContactModal
+        visible={modalVisible}
+        contact={selectedContact}
+        onClose={() => setModalVisible(false)}
+        onSave={handleSaveContact}
+      />
     </SafeAreaView>
   );
 }

@@ -25,6 +25,22 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  floatingButton: {
+    position: 'absolute',
+    width: 56,
+    height: 56,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 16,
+    bottom: 16,
+    backgroundColor: '#6200ee',
+    borderRadius: 28,
+    elevation: 8,
+  },
+  floatingButtonIcon: {
+    color: '#ffffff',
+    fontSize: 24,
+  },
 });
 
 export default styles;
