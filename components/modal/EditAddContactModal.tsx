@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Modal, View, Text, TextInput, Button} from 'react-native';
+import {Modal, View, Text, TextInput, TouchableOpacity} from 'react-native';
 import styles from './EditContactModalStyles';
 import {Contact} from '../../models/contact';
 
@@ -104,8 +104,18 @@ const EditAddContactModal: React.FC<EditAddContactModalProps> = ({
             keyboardType="email-address"
           />
 
-          <Button title="Save" onPress={handleSave} />
-          <Button title="Cancel" color="red" onPress={onClose} />
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={[styles.button, styles.saveButton]}
+              onPress={handleSave}>
+              <Text style={styles.buttonText}>Save</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.button, styles.cancelButton]}
+              onPress={onClose}>
+              <Text style={styles.buttonText}>Cancel</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </Modal>
