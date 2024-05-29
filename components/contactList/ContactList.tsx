@@ -45,7 +45,10 @@ const ContactList = ({data}: Props) => {
             />
           </View>
           <ListItem.Content>
-            <ListItem.Title>{item.first_name}</ListItem.Title>
+            <ListItem.Title>
+              {item.first_name}&nbsp;
+              {item.last_name}
+            </ListItem.Title>
             <ListItem.Subtitle>{item.email}</ListItem.Subtitle>
           </ListItem.Content>
         </ListItem>
