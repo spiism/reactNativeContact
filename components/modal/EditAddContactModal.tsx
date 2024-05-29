@@ -19,18 +19,21 @@ const EditAddContactModal: React.FC<EditAddContactModalProps> = ({
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [avatar, setAvatar] = useState('');
 
   useEffect(() => {
     if (contact) {
       setFirstName(contact.first_name);
       setLastName(contact.last_name);
       setEmail(contact.email);
+      setAvatar(contact.avatar);
     } else {
       setFirstName('');
       setLastName('');
       setEmail('');
+      setAvatar('https://www.example.com/default-avatar.png');
     }
-  }, [contact]);
+  }, [contact, visible]);
 
   const handleSave = () => {
     const newContact: Contact = {
@@ -38,9 +41,12 @@ const EditAddContactModal: React.FC<EditAddContactModalProps> = ({
       first_name: firstName,
       last_name: lastName,
       email: email,
+      avatar: avatar,
     };
     onSave(newContact);
   };
+
+  console.log(contact, 'contact');
 
   return (
     <Modal
@@ -72,6 +78,7 @@ const EditAddContactModal: React.FC<EditAddContactModalProps> = ({
             placeholder="Email"
             keyboardType="email-address"
           />
+
           <Button title="Save" onPress={handleSave} />
           <Button title="Cancel" color="red" onPress={onClose} />
         </View>
