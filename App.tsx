@@ -8,7 +8,8 @@ import {
 } from 'react-native';
 import ContactList from './components/contactList/ContactList';
 import {Provider, useDispatch, useSelector} from 'react-redux';
-import store, {AppDispatch, RootState} from './store/store';
+import {PersistGate} from 'redux-persist/integration/react';
+import {store, persistor, AppDispatch, RootState} from './store/store';
 import {addContact, fetchContacts} from './features/contactSlice';
 import Icon from 'react-native-vector-icons/AntDesign';
 import styles from './AppStyles';
@@ -105,7 +106,9 @@ function AppContent(): React.JSX.Element {
 function App() {
   return (
     <Provider store={store}>
-      <AppContent />
+      <PersistGate loading={null} persistor={persistor}>
+        <AppContent />
+      </PersistGate>
     </Provider>
   );
 }
